@@ -94,14 +94,20 @@ void printlist(struct ListNode *head)
 void main(void)
 {
     struct ListNode* t1, *t2, *a1;
-    int testint = 123;
+    int test1 = 911, test2 =712;
 
 
-    t1 = createNumber(120);
-    t2 = createNumber(100);  
+    t1 = createNumber(test1);
+    t2 = createNumber(test2); 
+    printf("First Number: %i\n", test1); 
+    printf("List 1(reverse order):");
     printlist(t1);
+    printf("Second Number: %i\n", test2); 
+    printf("List 2(reverse order):");
     printlist(t2);
     a1 = addTwoNumbers(t1,t2);
+    printf("This is the linked list answer( in reverse order ):");
     printlist(a1);
+    printf("This is the real answer: %i", (test1+test2));
 
 }
