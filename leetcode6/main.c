@@ -32,12 +32,28 @@ char * convert(char * s, int numRows){
     static char answer[1000];
     int i,col = 0, row = 0;
     int k, l, m;
-    printf("rows: %i, columns: %i, totalchar: %i\n",numRows,numCol, totalchar);
+    
+    if(totalchar <= 1) //edge case size 1 or less
+    {
+        return s;
+    }
 
+    if(numRows == 1) //edge case 1 row
+    {
+        return s;
+    }
+
+    for(k = 0; k < totalchar+1 ; k++) //reduced looping to speed up runtime
+    {
+        answer[k] = '\0';
+        for(l = 0; l < totalchar+1; l++)
+        {  
+            temp[k][l] = '\0';
+        }
+    }
 
     for(i = 0; i < totalchar; i++)
     {
-        printf("row: %i, col: %i\n", row, col);
         if(col % (numRows-1) == 0) //for columns with every index filled
         {
 
@@ -70,12 +86,14 @@ char * convert(char * s, int numRows){
     }
 
     printf("\n");
+    m = 0;
     for(k = 0; k < totalchar; k++)
     {
         for(l = 0; l < totalchar; l++)
         {
             if(temp[k][l] != '\0')
-            {
+            {   
+
                 answer[m] = temp[k][l];
                 m++;
             }
@@ -90,6 +108,10 @@ void main(void)
 {
     char *test = "PAYPALISHIRING";
     char *answer;
+
+    answer = convert(test, 3);
+    printf(!strcmp("PAHNAPLSIIGYIR", answer) ? "passed": "failed");
+    printf("\nFound answer: %s, Correct answer: PAHNAPLSIIGYIR\n", answer);
     
     answer = convert(test, 4);
     printf(!strcmp("PINALSIGYAHRPI", answer) ? "passed": "failed");
