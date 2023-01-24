@@ -29,28 +29,60 @@ char * convert(char * s, int numRows){
     int totalchar = strlen(s);
     int numCol = totalchar/numRows;
     static char temp[1000][1000];
-    int i,j = 0, k = 0; //use i for rows, j for columns
+    static char answer[1000];
+    int i,col = 0, row = 0;
+    int k, l, m;
     printf("rows: %i, columns: %i, totalchar: %i\n",numRows,numCol, totalchar);
 
 
     for(i = 0; i < totalchar; i++)
     {
-        if(j < numRows){
-            j++;
+        printf("row: %i, col: %i\n", row, col);
+        if(col % (numRows-1) == 0) //for columns with every index filled
+        {
+
+            temp[row][col] = s[i]; 
+            row++;
+            if(row == numRows) //when bottom of column, move to next
+            {
+                row = 0;
+                col++;
+            }
         }
         else
-        {
-            j = 0;
-            k++;
-        }
-        temp[j][k] = s[i];
-        printf("%c", temp[j][k]);
+        { // for columns with only 1 index filled
+            /*
+            if first after full row, should be second from the end row
+                numRow = 3
+                3 - (1%(3-1)) - 1 = 3 - 1%2 - 1 = 3 - 1 - 1 = 1
 
+                numRow = 4
+                4 - (1%(4-1) - 1) = 4 - 1%3 - 1 = 4 - 1 - 1 = 2
+
+            if second after full Row, should be third from end row
+                numRow = 4
+                4 - (2%(4-2)) - 1 = 4 - 2%2 - 1 = 4 - 0 - 1 = 3
+            */
+
+            temp[numRows - (col%(numRows-1)) - 1][col] = s[i];
+            col++;
+        }
     }
 
     printf("\n");
-    return (char*)temp;
+    for(k = 0; k < totalchar; k++)
+    {
+        for(l = 0; l < totalchar; l++)
+        {
+            if(temp[k][l] != '\0')
+            {
+                answer[m] = temp[k][l];
+                m++;
+            }
+        }
+    }
 
+    return (char*)answer;
 }
 
 
@@ -58,9 +90,9 @@ void main(void)
 {
     char *test = "PAYPALISHIRING";
     char *answer;
-
-    answer = convert(test, 3);
-
-    printf("answer: %s", answer);
-
+    
+    answer = convert(test, 4);
+    printf(!strcmp("PINALSIGYAHRPI", answer) ? "passed": "failed");
+    printf("\nFound answer: %s, Correct answer: PINALSIGYAHRPI\n", answer);
+    
 }
