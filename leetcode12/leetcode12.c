@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "leetcode12.h"
 
-#define max_length 16
+//#define RUN
+//#define debug
 
 /*
 Roman numerals are represented by seven different 
@@ -43,7 +45,9 @@ char * intToRoman(int num)
     
     while(num > 0)
     {
+#ifdef debug
         printf("current number: %i\n", num);
+#endif
         if(num >= 1000)
         {
 
@@ -124,10 +128,14 @@ char * intToRoman(int num)
             num -= 1;
         }
     }
+#ifdef debug
     printf("%s", answer);
+#endif
     return strdup(answer);
 }
 
+
+#ifdef RUN
 void main(void)
 {
     int test1 = 3888, test2 = 3900, test3 = 3500;
@@ -137,3 +145,4 @@ void main(void)
     printf("number is %i: %s\n", test3, intToRoman(test3));
 
 }
+#endif
