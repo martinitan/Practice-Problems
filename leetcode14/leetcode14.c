@@ -147,7 +147,7 @@ void main(void)
 
 
     
-    printf("longest prefix %s", longestCommonPrefix(test,length));
+    printf("Wrong programe");
 
 
 }
