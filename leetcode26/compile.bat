@@ -1,0 +1,1 @@
+gcc leetcode26.c ../leetcode15/leetcode15.c -o main.exe
