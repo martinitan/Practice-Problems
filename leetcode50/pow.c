@@ -1,6 +1,7 @@
 /* main.c */
 #include <stdlib.h>
 #include <stdio.h>
+#include "pow.h"
 
 
 // compute power function
@@ -34,13 +35,4 @@ double myPow(double x, int n)
         }
     }
 
-}
-
-void main(void)
-{
-    double test = 2.0;
-    int exp = 4;
-
-
-    printf("answer: %f\n", myPow(test,exp));
 }
